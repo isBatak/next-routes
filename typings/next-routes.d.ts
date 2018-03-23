@@ -35,7 +35,7 @@ export interface Router extends SingletonRouter {
   ): Promise<React.ComponentType<any>>;
 }
 
-export interface Registry {
+export interface Routes {
   getRequestHandler(app: next.Server, custom?: HTTPHandler): HTTPHandler;
   add(name: string, pattern?: string, page?: string): this;
   add(pattern: string, page: string): this;
@@ -44,11 +44,9 @@ export interface Registry {
   Router: Router;
 }
 
-export default class Routes implements Registry {
-  getRequestHandler(app: next.Server, custom?: HTTPHandler): HTTPHandler;
-  add(name: string, pattern?: string, page?: string): this;
-  add(pattern: string, page: string): this;
-  add(options: { name: string; pattern?: string; page?: string }): this;
+export interface RoutesOptions {
   Link: ComponentType<LinkProps>;
   Router: Router;
 }
+
+export default (options?: RoutesOptions) => Routes;
